@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="relative">
+
+    <!-- BG EFFECT -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-300/20 blur-[140px] rounded-full"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-300/20 blur-[140px] rounded-full"></div>
+
+    <div class="relative max-w-7xl mx-auto grid lg:grid-cols-3 gap-8">
+
+        <!-- FORM -->
+        <div class="lg:col-span-2">
+
+            <div
+                class="relative overflow-hidden rounded-[35px] bg-white/70 backdrop-blur-2xl border border-white shadow-[0_10px_40px_rgba(0,0,0,.05)]">
+
+                <!-- TOP -->
+                <div class="p-8 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white">
+
+                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-bold backdrop-blur-xl">
+                        CHECKOUT
+                    </span>
+
+                    <h2 class="mt-5 text-5xl font-black">
+                        تأكيد الطلب
+                    </h2>
+
+                    <p class="mt-3 text-white/80 text-lg">
+                        أكمل بياناتك لإتمام عملية الشراء.
+                    </p>
+
+                </div>
+
+                <!-- FORM -->
+                <div class="p-8">
+
+                    <form id="order-form" class="space-y-6">
+
+                        <!-- NAME -->
+                        <div>
+
+                            <label class="block mb-3 text-gray-700 font-bold">
+                                الاسم الكامل
+                            </label>
+
+                            <div class="relative">
+
+                                <input id="name" required
+                                    class="w-full h-14 rounded-2xl bg-white/80 border border-gray-200 px-5 outline-none focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100 transition shadow-sm"
+                                    placeholder="اكتب اسمك">
+
+                                <div class="absolute left-4 top-1/2 -translate-y-1/2 text-cyan-500 text-xl">
+                                    👤
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- PHONE -->
+                        <div>
+
+                            <label class="block mb-3 text-gray-700 font-bold">
+                                رقم الهاتف
+                            </label>
+
+                            <div class="relative">
+
+                                <input id="phone" required
+                                    class="w-full h-14 rounded-2xl bg-white/80 border border-gray-200 px-5 outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-100 transition shadow-sm"
+                                    placeholder="01xxxxxxxxx">
+
+                                <div class="absolute left-4 top-1/2 -translate-y-1/2 text-purple-500 text-xl">
+                                    📞
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- ADDRESS -->
+                        <div>
+
+                            <label class="block mb-3 text-gray-700 font-bold">
+                                العنوان
+                            </label>
+
+                            <div class="relative">
+
+                                <input id="address" required
+                                    class="w-full h-14 rounded-2xl bg-white/80 border border-gray-200 px-5 outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition shadow-sm"
+                                    placeholder="العنوان بالتفصيل">
+
+                                <div class="absolute left-4 top-1/2 -translate-y-1/2 text-blue-500 text-xl">
+                                    📍
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- NOTES -->
+                        <div>
+
+                            <label class="block mb-3 text-gray-700 font-bold">
+                                ملاحظات إضافية
+                            </label>
+
+                            <textarea id="notes" rows="5"
+                                class="w-full rounded-2xl bg-white/80 border border-gray-200 p-5 outline-none focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100 transition shadow-sm resize-none"
+                                placeholder="أي ملاحظات إضافية..."></textarea>
+
+                        </div>
+
+                        <!-- BTN -->
+                        <button type="submit"
+                            class="w-full h-16 rounded-2xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white text-xl font-black shadow-[0_20px_40px_rgba(59,130,246,.25)] hover:scale-[1.02] transition duration-300">
+
+                            🚀 تأكيد الطلب
+
+                        </button>
+
+                    </form>
+
+                    <!-- NOTE -->
+                    <div class="mt-6 bg-cyan-50 border border-cyan-100 rounded-2xl p-5 text-center">
+
+                        <p class="text-cyan-700 font-semibold">
+                            🔒 سيتم التواصل معك لتأكيد الطلب
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SUMMARY -->
+        <div>
+
+            <div
+                class="sticky top-28 rounded-[35px] overflow-hidden bg-white/70 backdrop-blur-2xl border border-white shadow-[0_10px_40px_rgba(0,0,0,.05)]">
+
+                <!-- HEADER -->
+                <div class="p-7 bg-gradient-to-r from-cyan-400 to-purple-500 text-white">
+
+                    <h3 class="text-3xl font-black">
+                        🛒 ملخص الطلب
+                    </h3>
+
+                    <p class="mt-2 text-white/80">
+                        تفاصيل المنتجات المختارة
+                    </p>
+
+                </div>
+
+                <!-- BODY -->
+                <div class="p-7">
+
+                    <div class="space-y-5">
+
+                        {% for item in items %}
+
+                        <div
+                            class="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-r from-cyan-50 to-purple-50 border border-white">
+
+                            <!-- IMAGE -->
+                            <img src="{{ item.product.image.url }}"
+                                class="w-16 h-16 rounded-2xl object-cover shadow-md">
+
+                            <!-- INFO -->
+                            <div class="flex-1">
+
+                                <h4 class="font-black text-gray-800">
+                                    {{ item.product.name }}
+                                </h4>
+
+                                <p class="text-sm text-gray-500 mt-1">
+                                    الكمية × {{ item.quantity }}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                    <!-- TOTAL -->
+                    <div
+                        class="mt-8 p-6 rounded-3xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white">
+
+                        <div class="flex items-center justify-between">
+
+                            <span class="text-xl font-bold">
+                                الإجمالي
+                            </span>
+
+                            <span class="text-4xl font-black">
+                                {{ total }}
+                                <span class="text-lg">ج.م</span>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- INFO -->
+                    <div class="mt-6 text-center text-gray-500 text-sm leading-7">
+
+                        الدفع قبل الاستلام<br>
+                        توصيل سريع لجميع المحافظات 🚚
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- EMAIL JS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+
+    emailjs.init("-ET1dnGaUIKjPTwX3");
+
+    document.getElementById("order-form").addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        let btn = this.querySelector("button");
+
+        btn.innerHTML = "⏳ جاري إرسال الطلب...";
+        btn.disabled = true;
+
+        let orderText = "";
+
+        {% for item in items %}
+        orderText += "📱 {{ item.product.name }} × {{ item.quantity }}\n";
+        {% endfor %}
+
+        emailjs.send("service_hmpbg9w", "template_tvkw3rl", {
+
+            name: document.getElementById("name").value,
+            phone: document.getElementById("phone").value,
+            address: document.getElementById("address").value,
+            notes: document.getElementById("notes").value,
+            order: orderText,
+            total: "{{ total }}"
+
+        }).then(() => {
+
+            btn.innerHTML = "✅ تم إرسال الطلب";
+
+            setTimeout(() => {
+
+                alert("تم إرسال الطلب بنجاح 🎉");
+                window.location.href = "/";
+
+            }, 1000);
+
+        }).catch(() => {
+
+            alert("حدث خطأ أثناء الإرسال");
+
+            btn.innerHTML = "🚀 تأكيد الطلب";
+            btn.disabled = false;
+
+        });
+
+    });
+
+</script>
+
+{% endblock %}

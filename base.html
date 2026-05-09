@@ -1,0 +1,235 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Al-Attar</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at top right, rgba(0, 180, 255, .12), transparent 25%),
+                radial-gradient(circle at bottom left, rgba(140, 0, 255, .12), transparent 25%),
+                #f5f9ff;
+            overflow-x: hidden;
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #edf4ff;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #38bdf8, #8b5cf6);
+            border-radius: 20px;
+        }
+
+        /* GLASS */
+        .glass {
+            background: rgba(255, 255, 255, .6);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, .7);
+        }
+
+        /* NAV LINK */
+        .nav-link {
+            position: relative;
+            transition: .3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -6px;
+            width: 0%;
+            height: 3px;
+            border-radius: 20px;
+            background: linear-gradient(to left, #06b6d4, #8b5cf6);
+            transition: .4s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: #06b6d4;
+        }
+
+        /* FLOAT */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* GLOW */
+        .glow {
+            box-shadow:
+                0 10px 40px rgba(0, 180, 255, .18),
+                0 10px 60px rgba(139, 92, 246, .18);
+        }
+
+        /* BUTTON */
+        .btn-future {
+            background: linear-gradient(to left, #06b6d4, #3b82f6, #8b5cf6);
+            transition: .4s;
+        }
+
+        .btn-future:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, .25);
+        }
+
+        /* FOOTER LINE */
+        .footer-line {
+            background: linear-gradient(to left, #06b6d4, #8b5cf6);
+            height: 3px;
+            width: 140px;
+            margin: auto;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 px-4 pt-4">
+
+        <div class="glass glow max-w-7xl mx-auto rounded-3xl px-6 py-4 flex items-center justify-between">
+
+            <!-- LOGO -->
+            <a href="{% url 'index' %}"
+                class="text-3xl font-black bg-gradient-to-l from-cyan-500 to-purple-500 bg-clip-text text-transparent float">
+
+                Al-Attar
+
+            </a>
+
+            <!-- NAV -->
+            <nav class="hidden md:flex items-center gap-10 text-[15px] font-bold">
+
+                <a href="{% url 'index' %}" class="nav-link">
+                    الرئيسية
+                </a>
+
+                <a href="{% url 'shop' %}" class="nav-link">
+                    المتجر
+                </a>
+
+            </nav>
+
+            <!-- CART -->
+            <div class="flex items-center gap-3">
+
+                <a href="{% url 'cart' %}" class="btn-future text-white px-6 py-3 rounded-2xl font-bold shadow-lg">
+
+                    🛒 السلة
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- FLOATING BLUR -->
+    <div class="fixed top-20 right-10 w-72 h-72 bg-cyan-300/20 blur-[120px] rounded-full pointer-events-none"></div>
+    <div class="fixed bottom-10 left-10 w-72 h-72 bg-purple-300/20 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <!-- CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 md:px-6 py-8">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-20 px-4 pb-6">
+
+        <div class="glass glow max-w-7xl mx-auto rounded-[35px] p-10 text-center">
+
+            <div class="footer-line mb-6"></div>
+
+            <h2 class="text-4xl font-black bg-gradient-to-l from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+                Al-Attar
+            </h2>
+
+            <p class="mt-5 text-gray-600 text-lg leading-8 max-w-2xl mx-auto">
+                أحدث الهواتف الجديدة والكسر زيرو بتجربة شراء مستقبلية
+                وتصميم عصري سريع وآمن.
+            </p>
+
+            <!-- SOCIAL -->
+            <div class="mt-8 flex justify-center gap-4">
+
+                <a href="#"
+                    class="w-14 h-14 rounded-2xl glass flex items-center justify-center text-2xl hover:scale-110 transition">
+
+                    📘
+
+                </a>
+
+                <a href="#"
+                    class="w-14 h-14 rounded-2xl glass flex items-center justify-center text-2xl hover:scale-110 transition">
+
+                    📸
+
+                </a>
+
+                <a href="#"
+                    class="w-14 h-14 rounded-2xl glass flex items-center justify-center text-2xl hover:scale-110 transition">
+
+                    💬
+
+                </a>
+
+            </div>
+
+            <p class="mt-10 text-gray-500 text-sm">
+                © 2026 Al-Attar — جميع الحقوق محفوظة
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

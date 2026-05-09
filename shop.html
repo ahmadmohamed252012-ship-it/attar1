@@ -1,0 +1,834 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="relative overflow-hidden py-10">
+
+    <!-- BG EFFECT -->
+    <div class="absolute top-0 right-0 w-[450px] h-[450px] bg-cyan-300/20 blur-[140px] rounded-full"></div>
+    <div class="absolute bottom-0 left-0 w-[450px] h-[450px] bg-purple-300/20 blur-[140px] rounded-full"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4">
+
+        <!-- HEADER -->
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-14">
+
+            <div>
+
+                <span class="bg-cyan-100 text-cyan-600 px-5 py-2 rounded-full text-sm font-bold">
+                    FUTURE STORE
+                </span>
+
+                <h2 class="mt-5 text-5xl font-black text-gray-900">
+                    متجر الهواتف
+                </h2>
+
+                <p class="mt-3 text-gray-500 text-lg">
+                    أحدث الهواتف الجديدة والكسر زيرو بأفضل الأسعار.
+                </p>
+
+            </div>
+
+            <!-- SEARCH -->
+            <div class="relative w-full lg:w-[380px]">
+
+                <input type="text" id="searchInput" placeholder="ابحث عن هاتف..."
+                    class="w-full h-16 rounded-3xl bg-white/70 backdrop-blur-xl border border-white px-7 pr-16 outline-none shadow-[0_10px_40px_rgba(0,0,0,.05)] focus:ring-4 focus:ring-cyan-100 focus:border-cyan-300 transition text-lg">
+
+                <div class="absolute right-6 top-1/2 -translate-y-1/2 text-2xl text-cyan-500">
+                    🔍
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- ========================= -->
+        <!-- OPPO -->
+        <!-- ========================= -->
+
+        <div class="mb-16 brand-section">
+
+            <div class="flex items-center justify-between mb-7">
+
+                <h3 class="text-3xl font-black text-gray-900">
+                    OPPO
+                </h3>
+
+                <div class="flex gap-3">
+
+                    <button onclick="scrollSlider('oppoSlider', -1)"
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                        ⬅
+                    </button>
+
+                    <button onclick="scrollSlider('oppoSlider', 1)"
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                        ➡
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div id="oppoSlider" class="slider flex gap-6 overflow-x-auto scroll-smooth pb-3">
+
+                {% for product in products %}
+                {% if "OPPO" in product.name|upper %}
+
+                <!-- CARD -->
+                <div
+                    class="product-card min-w-[320px] max-w-[320px] group relative overflow-hidden rounded-[35px] bg-white/70 backdrop-blur-2xl border border-white shadow-[0_20px_60px_rgba(0,0,0,.05)] hover:-translate-y-3 hover:shadow-[0_20px_70px_rgba(0,150,255,.15)] transition duration-500">
+
+                    <div
+                        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
+                    </div>
+
+                    <div class="relative overflow-hidden">
+
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-500">
+                        </div>
+
+                        <img src="{{ product.image.url }}"
+                            class="h-72 w-full object-cover group-hover:scale-110 transition duration-700">
+
+                    </div>
+
+                    <div class="p-6">
+
+                        <h3 class="product-name text-2xl font-black text-gray-800">
+                            {{ product.name }}
+                        </h3>
+
+                        <p class="text-gray-500 leading-7 mt-4 h-14 overflow-hidden">
+                            {{ product.description }}
+                        </p>
+
+                        <div class="mt-5">
+
+                            <p
+                                class="text-4xl font-black bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+
+                                {{ product.price }}
+
+                                <span class="text-lg text-gray-400">
+                                    ج.م
+                                </span>
+
+                            </p>
+
+                        </div>
+
+                        <div class="flex gap-3 mt-7">
+
+                            <a href="{% url 'product_detail' product.id %}"
+                                class="flex-1 h-14 rounded-2xl bg-white border border-white text-gray-800 font-bold flex items-center justify-center hover:bg-gray-50 transition">
+
+                                التفاصيل
+
+                            </a>
+
+                            <a href="{% url 'add_to_cart' product.id %}"
+                                class="flex-1 h-14 rounded-2xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-black flex items-center justify-center hover:scale-105 transition">
+
+                                🛒 إضافة
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- ========================= -->
+        <!-- SAMSUNG -->
+        <!-- ========================= -->
+
+        <div class="mb-16 brand-section">
+
+            <div class="flex items-center justify-between mb-7">
+
+                <h3 class="text-3xl font-black text-gray-900">
+                    SAMSUNG
+                </h3>
+
+                <div class="flex gap-3">
+
+                    <button onclick="scrollSlider('samsungSlider', -1)"
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                        ⬅
+                    </button>
+
+                    <button onclick="scrollSlider('samsungSlider', 1)"
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                        ➡
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div id="samsungSlider" class="slider flex gap-6 overflow-x-auto scroll-smooth pb-3">
+
+                {% for product in products %}
+                {% if "SUMSONG" in product.name|upper %}
+
+                <div
+                    class="product-card min-w-[320px] max-w-[320px] group relative overflow-hidden rounded-[35px] bg-white/70 backdrop-blur-2xl border border-white shadow-[0_20px_60px_rgba(0,0,0,.05)] hover:-translate-y-3 transition duration-500">
+
+                    <img src="{{ product.image.url }}" class="h-72 w-full object-cover">
+
+                    <div class="p-6">
+
+                        <h3 class="product-name text-2xl font-black text-gray-800">
+                            {{ product.name }}
+                        </h3>
+
+                        <p class="text-gray-500 mt-4 h-14 overflow-hidden">
+                            {{ product.description }}
+                        </p>
+
+                        <p
+                            class="mt-5 text-4xl font-black bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+
+                            {{ product.price }}
+
+                            <span class="text-lg text-gray-400">
+                                ج.م
+                            </span>
+
+                        </p>
+
+                    </div>
+
+                    <div class="flex gap-3 mt-7">
+
+                        <a href="{% url 'product_detail' product.id %}"
+                            class="flex-1 h-14 rounded-2xl bg-white border border-white text-gray-800 font-bold flex items-center justify-center hover:bg-gray-50 transition">
+
+                            التفاصيل
+
+                        </a>
+
+                        <a href="{% url 'add_to_cart' product.id %}"
+                            class="flex-1 h-14 rounded-2xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-black flex items-center justify-center hover:scale-105 transition">
+
+                            🛒 إضافة
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- ========================= -->
+        <!-- REALME -->
+        <!-- ========================= -->
+
+        <div class="mb-16 brand-section">
+
+            <div class="flex items-center justify-between mb-7">
+
+                <h3 class="text-3xl font-black text-gray-900">
+                    REALME
+                </h3>
+
+                <div class="flex gap-3">
+
+                    <button onclick="scrollSlider('realmeSlider', -1)"
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                        ⬅
+                    </button>
+
+                    <button onclick="scrollSlider('realmeSlider', 1)"
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                        ➡
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div id="realmeSlider" class="slider flex gap-6 overflow-x-auto scroll-smooth pb-3">
+
+                {% for product in products %}
+                {% if "REALME" in product.name|upper %}
+
+                <div
+                    class="product-card min-w-[320px] max-w-[320px] group relative overflow-hidden rounded-[35px] bg-white/70 backdrop-blur-2xl border border-white shadow-[0_20px_60px_rgba(0,0,0,.05)] hover:-translate-y-3 transition duration-500">
+
+                    <img src="{{ product.image.url }}" class="h-72 w-full object-cover">
+
+                    <div class="p-6">
+
+                        <h3 class="product-name text-2xl font-black text-gray-800">
+                            {{ product.name }}
+                        </h3>
+
+                        <p class="text-gray-500 mt-4 h-14 overflow-hidden">
+                            {{ product.description }}
+                        </p>
+
+                        <p
+                            class="mt-5 text-4xl font-black bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+
+                            {{ product.price }}
+
+                            <span class="text-lg text-gray-400">
+                                ج.م
+                            </span>
+
+                        </p>
+
+                    </div>
+
+                    <div class="flex gap-3 mt-7">
+
+                        <a href="{% url 'product_detail' product.id %}"
+                            class="flex-1 h-14 rounded-2xl bg-white border border-white text-gray-800 font-bold flex items-center justify-center hover:bg-gray-50 transition">
+
+                            التفاصيل
+
+                        </a>
+
+                        <a href="{% url 'add_to_cart' product.id %}"
+                            class="flex-1 h-14 rounded-2xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-black flex items-center justify-center hover:scale-105 transition">
+
+                            🛒 إضافة
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- ========================= -->
+        <!-- ITEL -->
+        <!-- ========================= -->
+
+        <div class="mb-16 brand-section">
+
+            <div class="flex items-center justify-between mb-7">
+
+                <h3 class="text-3xl font-black text-gray-900">
+                    ITEL
+                </h3>
+
+                <div class="flex gap-3">
+
+                    <button onclick="scrollSlider('itelSlider', -1)"
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                        ⬅
+                    </button>
+
+                    <button onclick="scrollSlider('itelSlider', 1)"
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                        ➡
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div id="itelSlider" class="slider flex gap-6 overflow-x-auto scroll-smooth pb-3">
+
+                {% for product in products %}
+                {% if "ITEL" in product.name|upper %}
+
+                <div
+                    class="product-card min-w-[320px] max-w-[320px] group relative overflow-hidden rounded-[35px] bg-white/70 backdrop-blur-2xl border border-white shadow-[0_20px_60px_rgba(0,0,0,.05)] hover:-translate-y-3 transition duration-500">
+
+                    <img src="{{ product.image.url }}" class="h-72 w-full object-cover">
+
+                    <div class="p-6">
+
+                        <h3 class="product-name text-2xl font-black text-gray-800">
+                            {{ product.name }}
+                        </h3>
+
+                        <p class="text-gray-500 mt-4 h-14 overflow-hidden">
+                            {{ product.description }}
+                        </p>
+
+                        <p
+                            class="mt-5 text-4xl font-black bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+
+                            {{ product.price }}
+
+                            <span class="text-lg text-gray-400">
+                                ج.م
+                            </span>
+
+                        </p>
+
+                    </div>
+
+                    <div class="flex gap-3 mt-7">
+
+                        <a href="{% url 'product_detail' product.id %}"
+                            class="flex-1 h-14 rounded-2xl bg-white border border-white text-gray-800 font-bold flex items-center justify-center hover:bg-gray-50 transition">
+
+                            التفاصيل
+
+                        </a>
+
+                        <a href="{% url 'add_to_cart' product.id %}"
+                            class="flex-1 h-14 rounded-2xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-black flex items-center justify-center hover:scale-105 transition">
+
+                            🛒 إضافة
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- ========================= -->
+        <!-- REDMI -->
+        <!-- ========================= -->
+
+        <div class="mb-16 brand-section">
+
+            <div class="flex items-center justify-between mb-7">
+
+                <h3 class="text-3xl font-black text-gray-900">
+                    REDMI
+                </h3>
+
+                <div class="flex gap-3">
+
+                    <button onclick="scrollSlider('redmiSlider', -1)"
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                        ⬅
+                    </button>
+
+                    <button onclick="scrollSlider('redmiSlider', 1)"
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                        ➡
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div id="redmiSlider" class="slider flex gap-6 overflow-x-auto scroll-smooth pb-3">
+
+                {% for product in products %}
+                {% if "REDMI" in product.name|upper %}
+
+                <div
+                    class="product-card min-w-[320px] max-w-[320px] group relative overflow-hidden rounded-[35px] bg-white/70 backdrop-blur-2xl border border-white shadow-[0_20px_60px_rgba(0,0,0,.05)] hover:-translate-y-3 transition duration-500">
+
+                    <img src="{{ product.image.url }}" class="h-72 w-full object-cover">
+
+                    <div class="p-6">
+
+                        <h3 class="product-name text-2xl font-black text-gray-800">
+                            {{ product.name }}
+                        </h3>
+
+                        <p class="text-gray-500 mt-4 h-14 overflow-hidden">
+                            {{ product.description }}
+                        </p>
+
+                        <p
+                            class="mt-5 text-4xl font-black bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+
+                            {{ product.price }}
+
+                            <span class="text-lg text-gray-400">
+                                ج.م
+                            </span>
+
+                        </p>
+
+                    </div>
+
+                    <div class="flex gap-3 mt-7">
+
+                        <a href="{% url 'product_detail' product.id %}"
+                            class="flex-1 h-14 rounded-2xl bg-white border border-white text-gray-800 font-bold flex items-center justify-center hover:bg-gray-50 transition">
+
+                            التفاصيل
+
+                        </a>
+
+                        <a href="{% url 'add_to_cart' product.id %}"
+                            class="flex-1 h-14 rounded-2xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-black flex items-center justify-center hover:scale-105 transition">
+
+                            🛒 إضافة
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- ========================= -->
+        <!-- ORAIMO -->
+        <!-- ========================= -->
+
+        <div class="mb-16 brand-section">
+
+            <div class="flex items-center justify-between mb-7">
+
+                <h3 class="text-3xl font-black text-gray-900">
+                    ORAIMO
+                </h3>
+
+                <div class="flex gap-3">
+
+                    <button onclick="scrollSlider('oraimoSlider', -1)"
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                        ⬅
+                    </button>
+
+                    <button onclick="scrollSlider('oraimoSlider', 1)"
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                        ➡
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div id="oraimoSlider" class="slider flex gap-6 overflow-x-auto scroll-smooth pb-3">
+
+                {% for product in products %}
+                {% if "ORAIMO" in product.name|upper %}
+
+                <div
+                    class="product-card min-w-[320px] max-w-[320px] group relative overflow-hidden rounded-[35px] bg-white/70 backdrop-blur-2xl border border-white shadow-[0_20px_60px_rgba(0,0,0,.05)] hover:-translate-y-3 transition duration-500">
+
+                    <img src="{{ product.image.url }}" class="h-72 w-full object-cover">
+
+                    <div class="p-6">
+
+                        <h3 class="product-name text-2xl font-black text-gray-800">
+                            {{ product.name }}
+                        </h3>
+
+                        <p class="text-gray-500 mt-4 h-14 overflow-hidden">
+                            {{ product.description }}
+                        </p>
+
+                        <p
+                            class="mt-5 text-4xl font-black bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+
+                            {{ product.price }}
+
+                            <span class="text-lg text-gray-400">
+                                ج.م
+                            </span>
+
+                        </p>
+
+                    </div>
+
+                    <div class="flex gap-3 mt-7">
+
+                        <a href="{% url 'product_detail' product.id %}"
+                            class="flex-1 h-14 rounded-2xl bg-white border border-white text-gray-800 font-bold flex items-center justify-center hover:bg-gray-50 transition">
+
+                            التفاصيل
+
+                        </a>
+
+                        <a href="{% url 'add_to_cart' product.id %}"
+                            class="flex-1 h-14 rounded-2xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-black flex items-center justify-center hover:scale-105 transition">
+
+                            🛒 إضافة
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- ========================= -->
+        <!-- VIVO -->
+        <!-- ========================= -->
+
+        <div class="mb-16 brand-section">
+
+            <div class="flex items-center justify-between mb-7">
+
+                <h3 class="text-3xl font-black text-gray-900">
+                    VIVO
+                </h3>
+
+                <div class="flex gap-3">
+
+                    <button onclick="scrollSlider('vivoSlider', -1)"
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                        ⬅
+                    </button>
+
+                    <button onclick="scrollSlider('vivoSlider', 1)"
+                        class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                        ➡
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div id="vivoSlider" class="slider flex gap-6 overflow-x-auto scroll-smooth pb-3">
+
+                {% for product in products %}
+                {% if "VIVO" in product.name|upper %}
+
+                <div
+                    class="product-card min-w-[320px] max-w-[320px] group relative overflow-hidden rounded-[35px] bg-white/70 backdrop-blur-2xl border border-white shadow-[0_20px_60px_rgba(0,0,0,.05)] hover:-translate-y-3 transition duration-500">
+
+                    <img src="{{ product.image.url }}" class="h-72 w-full object-cover">
+
+                    <div class="p-6">
+
+                        <h3 class="product-name text-2xl font-black text-gray-800">
+                            {{ product.name }}
+                        </h3>
+
+                        <p class="text-gray-500 mt-4 h-14 overflow-hidden">
+                            {{ product.description }}
+                        </p>
+
+                        <p
+                            class="mt-5 text-4xl font-black bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+
+                            {{ product.price }}
+
+                            <span class="text-lg text-gray-400">
+                                ج.م
+                            </span>
+
+                        </p>
+
+                    </div>
+
+                    <div class="flex gap-3 mt-7">
+
+                        <a href="{% url 'product_detail' product.id %}"
+                            class="flex-1 h-14 rounded-2xl bg-white border border-white text-gray-800 font-bold flex items-center justify-center hover:bg-gray-50 transition">
+
+                            التفاصيل
+
+                        </a>
+
+                        <a href="{% url 'add_to_cart' product.id %}"
+                            class="flex-1 h-14 rounded-2xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-black flex items-center justify-center hover:scale-105 transition">
+
+                            🛒 إضافة
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+                {% endfor %}
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- كسر زيرو -->
+            <!-- ========================= -->
+
+            <div class="mb-16 brand-section">
+
+                <div class="flex items-center justify-between mb-7">
+
+                    <h3 class="text-3xl font-black text-gray-900">
+                        كسر زيرو
+                    </h3>
+
+                    <div class="flex gap-3">
+
+                        <button onclick="scrollSlider('zeroSlider', -1)"
+                            class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                            ⬅
+                        </button>
+
+                        <button onclick="scrollSlider('zeroSlider', 1)"
+                            class="w-12 h-12 rounded-2xl bg-white shadow-lg hover:scale-110 transition">
+                            ➡
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div id="zeroSlider" class="slider flex gap-6 overflow-x-auto scroll-smooth pb-3">
+
+                    {% for product in products %}
+                    {% if "كسر زيرو" in product.name|upper %}
+
+                    <div
+                        class="product-card min-w-[320px] max-w-[320px] group relative overflow-hidden rounded-[35px] bg-white/70 backdrop-blur-2xl border border-white shadow-[0_20px_60px_rgba(0,0,0,.05)] hover:-translate-y-3 transition duration-500">
+
+                        <img src="{{ product.image.url }}" class="h-72 w-full object-cover">
+
+                        <div class="p-6">
+
+                            <h3 class="product-name text-2xl font-black text-gray-800">
+                                {{ product.name }}
+                            </h3>
+
+                            <p class="text-gray-500 mt-4 h-14 overflow-hidden">
+                                {{ product.description }}
+                            </p>
+
+                            <p
+                                class="mt-5 text-4xl font-black bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+
+                                {{ product.price }}
+
+                                <span class="text-lg text-gray-400">
+                                    ج.م
+                                </span>
+
+                            </p>
+
+                        </div>
+
+                        <div class="flex gap-3 mt-7">
+
+                            <a href="{% url 'product_detail' product.id %}"
+                                class="flex-1 h-14 rounded-2xl bg-white border border-white text-gray-800 font-bold flex items-center justify-center hover:bg-gray-50 transition">
+
+                                التفاصيل
+
+                            </a>
+
+                            <a href="{% url 'add_to_cart' product.id %}"
+                                class="flex-1 h-14 rounded-2xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-black flex items-center justify-center hover:scale-105 transition">
+
+                                🛒 إضافة
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+</section>
+
+
+
+
+
+<style>
+    .slider::-webkit-scrollbar {
+        display: none;
+    }
+
+    .slider {
+        scrollbar-width: none;
+    }
+</style>
+
+
+
+
+
+<script>
+
+    function scrollSlider(id, direction) {
+
+        const slider = document.getElementById(id);
+
+        slider.scrollBy({
+
+            left: direction * 350,
+            behavior: 'smooth'
+
+        });
+
+    }
+
+</script>
+
+{% endblock %}

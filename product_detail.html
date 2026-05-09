@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="relative overflow-hidden">
+
+    <!-- BG EFFECT -->
+    <div class="absolute top-0 right-0 w-[450px] h-[450px] bg-cyan-300/20 blur-[140px] rounded-full"></div>
+    <div class="absolute bottom-0 left-0 w-[450px] h-[450px] bg-purple-300/20 blur-[140px] rounded-full"></div>
+
+    <div class="relative max-w-7xl mx-auto">
+
+        <div class="grid lg:grid-cols-2 gap-14 items-start">
+
+            <!-- IMAGE SECTION -->
+            <div>
+
+                <!-- MAIN IMAGE -->
+                <div
+                    class="relative overflow-hidden rounded-[40px] bg-white/70 backdrop-blur-2xl border border-white shadow-[0_20px_60px_rgba(0,0,0,.06)]">
+
+                    <!-- TOP LIGHT -->
+                    <div
+                        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
+                    </div>
+
+                    <img id="mainImage" src="{{ product.image.url }}"
+                        class="w-full h-[600px] object-cover hover:scale-105 transition duration-700">
+
+                    <!-- BADGE -->
+                    <div
+                        class="absolute top-6 right-6 bg-white/80 backdrop-blur-xl border border-white px-5 py-2 rounded-full shadow-lg">
+
+                        <span
+                            class="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent font-black">
+                            ✨ NEW
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- THUMBNAILS -->
+                <div class="grid grid-cols-5 gap-4 mt-6">
+
+                    <!-- IMAGE 1 -->
+                    <img onclick="changeImage(this)" src="{{ product.image.url }}"
+                        class="thumb h-24 w-full object-cover rounded-2xl cursor-pointer border-2 border-transparent hover:border-cyan-400 hover:-translate-y-1 transition duration-300 shadow-lg">
+
+                    <!-- IMAGE 2 -->
+                    {% if product.image2 %}
+                    <img onclick="changeImage(this)" src="{{ product.image2.url }}"
+                        class="thumb h-24 w-full object-cover rounded-2xl cursor-pointer border-2 border-transparent hover:border-cyan-400 hover:-translate-y-1 transition duration-300 shadow-lg">
+                    {% endif %}
+
+                    <!-- IMAGE 3 -->
+                    {% if product.image3 %}
+                    <img onclick="changeImage(this)" src="{{ product.image3.url }}"
+                        class="thumb h-24 w-full object-cover rounded-2xl cursor-pointer border-2 border-transparent hover:border-cyan-400 hover:-translate-y-1 transition duration-300 shadow-lg">
+                    {% endif %}
+
+                    <!-- IMAGE 4 -->
+                    {% if product.image4 %}
+                    <img onclick="changeImage(this)" src="{{ product.image4.url }}"
+                        class="thumb h-24 w-full object-cover rounded-2xl cursor-pointer border-2 border-transparent hover:border-cyan-400 hover:-translate-y-1 transition duration-300 shadow-lg">
+                    {% endif %}
+
+                    <!-- IMAGE 5 -->
+                    {% if product.image5 %}
+                    <img onclick="changeImage(this)" src="{{ product.image5.url }}"
+                        class="thumb h-24 w-full object-cover rounded-2xl cursor-pointer border-2 border-transparent hover:border-cyan-400 hover:-translate-y-1 transition duration-300 shadow-lg">
+                    {% endif %}
+
+                </div>
+
+                <!-- BADGES -->
+                <div class="flex gap-3 flex-wrap mt-7">
+
+                    <div class="bg-green-100 text-green-700 px-5 py-3 rounded-2xl font-semibold shadow-sm">
+                        ✅ متوفر حالياً
+                    </div>
+
+                    <div class="bg-cyan-100 text-cyan-700 px-5 py-3 rounded-2xl font-semibold shadow-sm">
+                        🚚 شحن سريع
+                    </div>
+
+                    <div class="bg-purple-100 text-purple-700 px-5 py-3 rounded-2xl font-semibold shadow-sm">
+                        🔒 ضمان الجودة
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- INFO SECTION -->
+            <div>
+
+                <!-- TITLE -->
+                <div>
+
+                    <span class="bg-cyan-100 text-cyan-600 px-5 py-2 rounded-full text-sm font-bold">
+                        FUTURE DEVICE
+                    </span>
+
+                    <h1 class="mt-6 text-5xl md:text-6xl font-black text-gray-900 leading-tight">
+                        {{ product.name }}
+                    </h1>
+
+                </div>
+
+                <!-- PRICE -->
+                <div class="mt-8 flex items-center gap-5">
+
+                    <div class="px-8 py-5 rounded-[30px] bg-white/70 backdrop-blur-xl border border-white shadow-lg">
+
+                        <p
+                            class="text-5xl font-black bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+                            {{ product.price }}
+                            <span class="text-xl text-gray-400">ج.م</span>
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="mt-8 rounded-[35px] bg-white/70 backdrop-blur-xl border border-white p-7 shadow-sm">
+
+                    <h3 class="text-2xl font-black text-gray-800 mb-5">
+                        📱 وصف الجهاز
+                    </h3>
+
+                    <p class="text-gray-600 leading-9 text-lg">
+                        {{ product.description }}
+                    </p>
+
+                </div>
+
+                <!-- SPECS -->
+                <div
+                    class="mt-8 rounded-[35px] overflow-hidden bg-white/70 backdrop-blur-xl border border-white shadow-[0_10px_40px_rgba(0,0,0,.05)]">
+
+                    <!-- HEADER -->
+                    <div class="p-6 bg-gradient-to-r from-cyan-400 to-purple-500 text-white">
+
+                        <h3 class="text-3xl font-black">
+                            المواصفات
+                        </h3>
+
+                    </div>
+
+                    <!-- BODY -->
+                    <div class="p-7 space-y-5">
+
+                        <div class="spec">
+                            <span>الماركة</span>
+                            <strong>{{ product.brand }}</strong>
+                        </div>
+
+                        <div class="spec">
+                            <span>الرام</span>
+                            <strong>{{ product.ram }}</strong>
+                        </div>
+
+                        <div class="spec">
+                            <span>المساحة</span>
+                            <strong>{{ product.storage }}</strong>
+                        </div>
+
+                        <div class="spec">
+                            <span>البطارية</span>
+                            <strong>{{ product.battery }}</strong>
+                        </div>
+
+                        <div class="spec">
+                            <span>الكاميرا</span>
+                            <strong>{{ product.camera }}</strong>
+                        </div>
+
+                        <div class="spec border-none">
+                            <span>الحالة</span>
+                            <strong class="text-green-600">
+                                {{ product.condition }}
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- BUTTONS -->
+                <div class="flex flex-col sm:flex-row gap-5 mt-10">
+
+                    <a href="{% url 'add_to_cart' product.id %}"
+                        class="flex-1 h-16 rounded-3xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white text-xl font-black flex items-center justify-center shadow-[0_20px_40px_rgba(59,130,246,.25)] hover:scale-105 transition duration-300">
+
+                        🛒 إضافة للسلة
+
+                    </a>
+
+                    <a href="{% url 'cart' %}"
+                        class="flex-1 h-16 rounded-3xl bg-white/70 backdrop-blur-xl border border-white text-gray-800 text-xl font-black flex items-center justify-center hover:bg-white transition duration-300 shadow-lg">
+
+                        عرض السلة
+
+                    </a>
+
+                </div>
+
+                <!-- FEATURES -->
+                <div class="grid grid-cols-3 gap-5 mt-10">
+
+                    <div
+                        class="bg-white/70 backdrop-blur-xl border border-white rounded-[30px] p-6 text-center shadow-lg hover:-translate-y-2 transition">
+
+                        <div class="text-4xl">🔒</div>
+
+                        <p class="mt-4 font-bold text-gray-700">
+                            دفع آمن
+                        </p>
+
+                    </div>
+
+                    <div
+                        class="bg-white/70 backdrop-blur-xl border border-white rounded-[30px] p-6 text-center shadow-lg hover:-translate-y-2 transition">
+
+                        <div class="text-4xl">🚚</div>
+
+                        <p class="mt-4 font-bold text-gray-700">
+                            شحن سريع
+                        </p>
+
+                    </div>
+
+                    <div
+                        class="bg-white/70 backdrop-blur-xl border border-white rounded-[30px] p-6 text-center shadow-lg hover:-translate-y-2 transition">
+
+                        <div class="text-4xl">💯</div>
+
+                        <p class="mt-4 font-bold text-gray-700">
+                            جودة مضمونة
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- IMAGE SWITCH -->
+<script>
+
+    function changeImage(element) {
+
+        document.getElementById("mainImage").src = element.src;
+
+        document.querySelectorAll(".thumb").forEach(img => {
+            img.classList.remove("border-cyan-400");
+        });
+
+        element.classList.add("border-cyan-400");
+
+    }
+
+</script>
+
+<style>
+    .spec {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 18px;
+        border-bottom: 1px solid rgba(0, 0, 0, .08);
+        font-size: 17px;
+    }
+
+    .spec span {
+        color: #6b7280;
+    }
+
+    .spec strong {
+        color: #111827;
+        font-weight: 800;
+    }
+</style>
+
+{% endblock %}

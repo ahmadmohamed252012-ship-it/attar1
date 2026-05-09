@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- HERO -->
+<section class="relative overflow-hidden bg-gradient-to-br from-[#eef7ff] via-white to-[#f3ecff]">
+
+    <!-- EFFECTS -->
+    <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-cyan-300/30 rounded-full blur-[140px]"></div>
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-300/30 rounded-full blur-[140px]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
+
+        <!-- TEXT -->
+        <div>
+
+            <div
+                class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-xl border border-cyan-200 px-5 py-2 rounded-full shadow-lg">
+                <span class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
+                <span class="text-cyan-700 font-semibold text-sm">
+                    مستقبل الهواتف بدأ هنا
+                </span>
+            </div>
+
+            <h1 class="mt-8 text-5xl md:text-7xl font-black leading-tight text-gray-900">
+
+                اكتشف
+                <span class="bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+                    الجيل القادم
+                </span>
+
+                من الهواتف
+
+            </h1>
+
+            <p class="mt-8 text-gray-600 text-xl leading-9 max-w-xl">
+                أحدث الهواتف الجديدة والكسر زيرو بتجربة عصرية
+                وتصميم يخطف الانتباه.
+            </p>
+
+            <!-- BUTTONS -->
+            <div class="mt-10 flex flex-wrap gap-5">
+
+                <a href="{% url 'shop' %}"
+                    class="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold shadow-[0_15px_40px_rgba(0,150,255,.35)] hover:scale-105 transition duration-300">
+
+                    تصفح المتجر
+
+                </a>
+
+                <a href="#products"
+                    class="px-8 py-4 rounded-2xl bg-white/70 backdrop-blur-xl border border-gray-200 hover:bg-white transition duration-300 font-semibold text-gray-700 shadow-lg">
+
+                    منتجتنا اضغط
+
+                </a>
+
+            </div>
+
+            <!-- STATS -->
+            <div class="mt-14 grid grid-cols-3 gap-5">
+
+                <div class="bg-white/70 backdrop-blur-xl rounded-3xl p-5 border border-white shadow-lg">
+                    <h3 class="text-3xl font-black text-cyan-500">500+</h3>
+                    <p class="text-gray-500 mt-1 text-sm">عميل سعيد</p>
+                </div>
+
+                <div class="bg-white/70 backdrop-blur-xl rounded-3xl p-5 border border-white shadow-lg">
+                    <h3 class="text-3xl font-black text-blue-500">24H</h3>
+                    <p class="text-gray-500 mt-1 text-sm">توصيل سريع</p>
+                </div>
+
+                <div class="bg-white/70 backdrop-blur-xl rounded-3xl p-5 border border-white shadow-lg">
+                    <h3 class="text-3xl font-black text-purple-500">100%</h3>
+                    <p class="text-gray-500 mt-1 text-sm">جودة مضمونة</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- IMAGE -->
+        <div class="relative flex justify-center">
+
+            <!-- CIRCLES -->
+            <div class="absolute w-[420px] h-[420px] rounded-full border border-cyan-200 animate-spin-slow"></div>
+            <div class="absolute w-[300px] h-[300px] rounded-full border border-purple-200 animate-spin-reverse"></div>
+
+            <!-- GLOW -->
+            <div class="absolute w-64 h-64 bg-cyan-300/40 blur-[120px] rounded-full"></div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="relative py-24 overflow-hidden">
+
+    <!-- BG -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white to-[#f6f9ff]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6">
+
+        <!-- TITLE -->
+        <div class="text-center mb-16">
+
+            <span class="bg-cyan-100 text-cyan-600 px-5 py-2 rounded-full text-sm font-bold">
+                FUTURE COLLECTION
+            </span>
+
+            <h2 class="mt-6 text-5xl font-black text-gray-900">
+                أحدث المنتجات
+            </h2>
+
+            <a href="{% url 'shop' %}"
+                class="inline-block mt-10 px-10 py-4 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold shadow-[0_15px_40px_rgba(0,150,255,.35)] hover:scale-105 transition duration-300">
+
+                تصفح المتجر
+
+            </a>
+
+        </div>
+
+        <!-- GRID -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            {% for p in products %}
+            <div
+                class="group relative rounded-[35px] overflow-hidden bg-white/80 backdrop-blur-xl border border-white shadow-[0_10px_40px_rgba(0,0,0,.05)] hover:-translate-y-3 hover:shadow-[0_25px_60px_rgba(0,150,255,.18)] transition duration-500">
+
+                <!-- TOP LIGHT -->
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
+                </div>
+
+                <!-- IMAGE -->
+                <div class="relative overflow-hidden bg-gradient-to-b from-[#f8fbff] to-white">
+
+                    <img src="{{ p.image.url }}"
+                        class="h-72 w-full object-cover group-hover:scale-110 transition duration-700">
+
+                    <!-- BADGE -->
+                    <div
+                        class="absolute top-4 right-4 bg-white/80 backdrop-blur-xl text-cyan-600 px-4 py-1 rounded-full text-xs font-bold shadow-lg">
+                        NEW
+                    </div>
+
+                </div>
+
+                <!-- INFO -->
+                <div class="p-6">
+
+                    <h3 class="text-2xl font-bold text-gray-800">
+                        {{ p.name }}
+                    </h3>
+
+                    <div class="mt-5 flex items-center justify-between">
+
+                        <p
+                            class="text-3xl font-black bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+                            {{ p.price }}
+                            <span class="text-sm text-gray-400">ج.م</span>
+                        </p>
+
+                    </div>
+
+                    <!-- BTN -->
+                    <a href="{% url 'add_to_cart' p.id %}"
+                        class="mt-6 flex items-center justify-center gap-3 rounded-2xl py-4 font-bold text-white bg-gradient-to-r from-cyan-400 to-blue-500 hover:scale-105 transition duration-300 shadow-[0_15px_35px_rgba(0,150,255,.25)]">
+
+                        🛒 أضف للسلة
+
+                    </a>
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FEATURES -->
+<section class="pb-24 bg-gradient-to-b from-[#f6f9ff] to-white">
+
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+
+        <!-- CARD -->
+        <div
+            class="relative rounded-[35px] bg-white/80 backdrop-blur-xl border border-white p-10 shadow-[0_10px_40px_rgba(0,0,0,.05)] hover:-translate-y-2 transition duration-500">
+
+            <div
+                class="w-20 h-20 rounded-3xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-4xl shadow-lg">
+                🚀
+            </div>
+
+            <h3 class="mt-8 text-3xl font-black text-gray-800">
+                سرعة خارقة
+            </h3>
+
+            <p class="mt-4 text-gray-500 leading-8">
+                توصيل سريع وتقنيات حديثة لتجربة شراء متطورة.
+            </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div
+            class="relative rounded-[35px] bg-white/80 backdrop-blur-xl border border-white p-10 shadow-[0_10px_40px_rgba(0,0,0,.05)] hover:-translate-y-2 transition duration-500">
+
+            <div
+                class="w-20 h-20 rounded-3xl bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center text-4xl shadow-lg">
+                💎
+            </div>
+
+            <h3 class="mt-8 text-3xl font-black text-gray-800">
+                تصميم فاخر
+            </h3>
+
+            <p class="mt-4 text-gray-500 leading-8">
+                واجهة حديثة ومنتجات بأفضل جودة وشكل مستقبلي.
+            </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div
+            class="relative rounded-[35px] bg-white/80 backdrop-blur-xl border border-white p-10 shadow-[0_10px_40px_rgba(0,0,0,.05)] hover:-translate-y-2 transition duration-500">
+
+            <div
+                class="w-20 h-20 rounded-3xl bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center text-4xl shadow-lg">
+                🛡️
+            </div>
+
+            <h3 class="mt-8 text-3xl font-black text-gray-800">
+                أمان وثقة
+            </h3>
+
+            <p class="mt-4 text-gray-500 leading-8">
+                شراء آمن وضمان كامل على جميع الأجهزة.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+    @keyframes spinSlow {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spinReverse {
+        from {
+            transform: rotate(360deg);
+        }
+
+        to {
+            transform: rotate(0deg);
+        }
+    }
+
+    .animate-spin-slow {
+        animation: spinSlow 15s linear infinite;
+    }
+
+    .animate-spin-reverse {
+        animation: spinReverse 12s linear infinite;
+    }
+</style>
+
+{% endblock %}
