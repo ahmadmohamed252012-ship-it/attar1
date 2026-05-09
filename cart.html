@@ -1,246 +1,139 @@
-{% extends 'base.html' %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
-<section class="relative overflow-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
 
-    <!-- BG EFFECT -->
-    <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-cyan-300/20 blur-[120px] rounded-full"></div>
-    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-300/20 blur-[120px] rounded-full"></div>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-    <div class="relative max-w-7xl mx-auto p-4 md:p-6 grid lg:grid-cols-3 gap-8">
+<body class="bg-gray-100">
 
-        <!-- CART ITEMS -->
-        <div class="lg:col-span-2">
+    <div class="max-w-5xl mx-auto p-6">
 
-            <!-- TITLE -->
-            <div class="mb-8">
+        <h1 class="text-4xl font-black mb-6">🛒 السلة</h1>
 
-                <span class="bg-cyan-100 text-cyan-600 px-4 py-2 rounded-full text-sm font-bold">
-                    SMART CART
-                </span>
+        <!-- ITEMS -->
+        <div id="cartItems" class="space-y-4"></div>
 
-                <h2 class="mt-4 text-5xl font-black text-gray-800">
-                    سلة المشتريات
-                </h2>
-
-                <p class="mt-3 text-gray-500 text-lg">
-                    راجع منتجاتك قبل إتمام الطلب.
-                </p>
-
-            </div>
-
-            <!-- ITEMS -->
-            <div class="space-y-6">
-
-                {% for item in items %}
-                <div
-                    class="group relative overflow-hidden rounded-[35px] bg-white/70 backdrop-blur-2xl border border-white shadow-[0_10px_40px_rgba(0,0,0,.05)] hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,150,255,.12)] transition duration-500">
-
-                    <!-- TOP LIGHT -->
-                    <div
-                        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
-                    </div>
-
-                    <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
-
-                        <!-- PRODUCT -->
-                        <div class="flex items-center gap-5">
-
-                            <!-- ICON -->
-                            <div
-                                class="w-20 h-20 rounded-3xl bg-gradient-to-br from-cyan-400 to-purple-500 flex items-center justify-center text-3xl shadow-lg">
-                                📱
-                            </div>
-
-                            <!-- INFO -->
-                            <div>
-
-                                <h3 class="text-2xl font-black text-gray-800">
-                                    {{ item.product.name }}
-                                </h3>
-
-                                <p
-                                    class="mt-2 text-lg font-bold bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
-                                    {{ item.total }} ج.م
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <!-- CONTROLS -->
-                        <div class="flex items-center gap-5">
-
-                            <!-- QUANTITY -->
-                            <div
-                                class="flex items-center gap-4 bg-white/80 border border-gray-100 rounded-2xl px-4 py-3 shadow-sm">
-
-                                <a href="{% url 'decrease_quantity' item.id %}"
-                                    class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-400 to-pink-500 text-white flex items-center justify-center text-xl font-bold hover:scale-110 transition">
-
-                                    -
-
-                                </a>
-
-                                <span class="text-xl font-black text-gray-800 min-w-[20px] text-center">
-                                    {{ item.quantity }}
-                                </span>
-
-                                <a href="{% url 'increase_quantity' item.id %}"
-                                    class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 text-white flex items-center justify-center text-xl font-bold hover:scale-110 transition">
-
-                                    +
-
-                                </a>
-
-                            </div>
-
-                            <!-- DELETE -->
-                            <a href="{% url 'remove_item' item.id %}"
-                                class="px-5 py-3 rounded-2xl bg-red-50 text-red-500 font-bold hover:bg-red-500 hover:text-white transition duration-300">
-
-                                حذف
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                {% empty %}
-
-                <!-- EMPTY -->
-                <div
-                    class="relative overflow-hidden rounded-[35px] bg-white/70 backdrop-blur-2xl border border-white shadow-[0_10px_40px_rgba(0,0,0,.05)] p-14 text-center">
-
-                    <div class="text-7xl mb-5">
-                        🛒
-                    </div>
-
-                    <h3 class="text-4xl font-black text-gray-800">
-                        السلة فارغة
-                    </h3>
-
-                    <p class="mt-4 text-gray-500 text-lg">
-                        لم تقم بإضافة أي منتجات بعد.
-                    </p>
-
-                    <a href="{% url 'shop' %}"
-                        class="inline-block mt-8 px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-400 to-purple-500 text-white font-bold shadow-lg hover:scale-105 transition">
-
-                        ابدأ التسوق
-
-                    </a>
-
-                </div>
-
-                {% endfor %}
-
-            </div>
-
+        <!-- EMPTY -->
+        <div id="empty" class="hidden text-center text-gray-500 mt-10">
+            السلة فاضية
         </div>
 
         <!-- SUMMARY -->
-        <div>
+        <div class="mt-10 bg-white p-6 rounded-2xl shadow">
 
-            <div
-                class="sticky top-28 relative overflow-hidden rounded-[35px] bg-white/70 backdrop-blur-2xl border border-white shadow-[0_15px_50px_rgba(0,0,0,.06)] p-8">
+            <div class="flex justify-between mb-3">
+                <span>المجموع</span>
+                <span id="subtotal">0</span>
+            </div>
 
-                <!-- LIGHT -->
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-400 to-purple-500"></div>
+            <div class="flex justify-between mb-3">
+                <span>الشحن</span>
+                <span id="shipping">0</span>
+            </div>
 
-                <!-- TITLE -->
-                <div class="flex items-center gap-4 mb-8">
+            <hr class="my-3">
 
-                    <div
-                        class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-purple-500 text-white flex items-center justify-center text-3xl shadow-lg">
-                        💳
-                    </div>
-
-                    <div>
-                        <h3 class="text-3xl font-black text-gray-800">
-                            ملخص الطلب
-                        </h3>
-
-                        <p class="text-gray-500 mt-1">
-                            تفاصيل الفاتورة النهائية
-                        </p>
-                    </div>
-
-                </div>
-
-                <!-- DETAILS -->
-                <div class="space-y-5">
-
-                    <div class="flex justify-between items-center bg-white/70 rounded-2xl p-4">
-
-                        <span class="text-gray-600 font-semibold">
-                            المجموع
-                        </span>
-
-                        <span class="font-black text-lg text-gray-800">
-                            {{ subtotal }} ج.م
-                        </span>
-
-                    </div>
-
-                    <div class="flex justify-between items-center bg-white/70 rounded-2xl p-4">
-
-                        <span class="text-gray-600 font-semibold">
-                            الشحن
-                        </span>
-
-                        <span class="font-black text-lg text-gray-800">
-                            {{ shipping }} ج.م
-                        </span>
-
-                    </div>
-
-                    <!-- TOTAL -->
-                    <div class="mt-6 rounded-3xl bg-gradient-to-r from-cyan-400 to-purple-500 p-[1px]">
-
-                        <div class="bg-white rounded-3xl p-5 flex justify-between items-center">
-
-                            <span class="text-xl font-black text-gray-800">
-                                الإجمالي
-                            </span>
-
-                            <span
-                                class="text-3xl font-black bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
-                                {{ total }} ج.م
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- BUTTON -->
-                <a href="{% url 'order' %}"
-                    class="mt-8 flex items-center justify-center gap-3 w-full py-5 rounded-3xl text-white text-lg font-black bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 shadow-[0_15px_40px_rgba(59,130,246,.25)] hover:scale-[1.02] transition duration-300">
-
-                    ⚡ إتمام الطلب
-
-                </a>
-
-                <!-- NOTE -->
-                <div class="mt-6 bg-cyan-50 rounded-2xl p-4 text-center">
-
-                    <p class="text-cyan-700 font-semibold">
-                        🔒 الدفع قبل الاستلام
-                    </p>
-
-                </div>
-
+            <div class="flex justify-between text-xl font-bold">
+                <span>الإجمالي</span>
+                <span id="total">0</span>
             </div>
 
         </div>
 
     </div>
 
-</section>
+    <script>
+        // 🟢 بيانات تجريبية
+        let cart = [
+            { name: "iPhone 15", price: 30000, qty: 1 },
+            { name: "Samsung S24", price: 25000, qty: 2 }
+        ];
 
-{% endblock %}
+        function renderCart() {
+            let container = document.getElementById("cartItems");
+            let empty = document.getElementById("empty");
+
+            container.innerHTML = "";
+
+            if (cart.length === 0) {
+                empty.classList.remove("hidden");
+                updateSummary();
+                return;
+            }
+
+            empty.classList.add("hidden");
+
+            cart.forEach((item, i) => {
+
+                container.innerHTML += `
+        <div class="bg-white p-4 rounded-2xl shadow flex justify-between items-center">
+
+            <div>
+                <h3 class="font-bold text-lg">${item.name}</h3>
+                <p class="text-purple-600 font-bold">${item.price * item.qty} ج.م</p>
+            </div>
+
+            <div class="flex items-center gap-3">
+
+                <button onclick="changeQty(${i}, -1)"
+                class="px-3 py-1 bg-red-500 text-white rounded">-</button>
+
+                <span>${item.qty}</span>
+
+                <button onclick="changeQty(${i}, 1)"
+                class="px-3 py-1 bg-green-500 text-white rounded">+</button>
+
+                <button onclick="removeItem(${i})"
+                class="text-red-500 font-bold ml-3">حذف</button>
+
+            </div>
+
+        </div>
+        `;
+            });
+
+            updateSummary();
+        }
+
+        function changeQty(i, val) {
+            cart[i].qty += val;
+
+            if (cart[i].qty <= 0) {
+                cart.splice(i, 1);
+            }
+
+            renderCart();
+        }
+
+        function removeItem(i) {
+            cart.splice(i, 1);
+            renderCart();
+        }
+
+        // 🔥 الحسابات
+        function updateSummary() {
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                subtotal += item.price * item.qty;
+            });
+
+            let shipping = subtotal > 0 ? 50 : 0;
+            let total = subtotal + shipping;
+
+            document.getElementById("subtotal").innerText = subtotal + " ج.م";
+            document.getElementById("shipping").innerText = shipping + " ج.م";
+            document.getElementById("total").innerText = total + " ج.م";
+        }
+
+        renderCart();
+    </script>
+
+</body>
+
+</html>
